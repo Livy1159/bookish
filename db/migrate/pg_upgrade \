@@ -1,0 +1,6 @@
+pg_upgrade \
+  -d /usr/local/var/postgres \
+  -D /usr/local/var/postgres9.5 \
+  -b /usr/local/Cellar/postgresql/9.6.5/bin/ \
+  -B /usr/local/Cellar/postgresql/9.6.5/bin/ \
+  -v
