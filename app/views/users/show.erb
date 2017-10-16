@@ -1,1 +1,12 @@
 <h1>Welcome!</h1>
+
+<a href="/users/<%= @user.id %>/books/new"><button>Add a book!</button></a>
+
+<div>
+
+<% @user.books.each do |book| %>
+	<a href="/users/<%= @user.id %>/books/<%= book.id %>"><%= book.title %></a>
+<% end %>
+
+
+</div>

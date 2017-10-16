@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   include BCrypt
 
   has_many :book_users
-  has_many :books, through: :book_users
+  has_many :books, through: :book_users#, source: :book
  
   def password
     @password ||= Password.new(password_hash)
