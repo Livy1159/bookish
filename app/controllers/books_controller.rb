@@ -17,7 +17,8 @@ post '/users/:id/books' do
 end
 
 get '/users/:id/books/:id' do
-
+  @user = User.find(params[:id])
+  @book = Book.find(params[:id])
 
   erb :'books/show'
 end
