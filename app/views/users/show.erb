@@ -4,8 +4,8 @@
 
 <div>
 
-<% @user.books.each do |book| %>
-	<a href="/users/<%= @user.id %>/books/<%= book.id %>"><%= book.title %></a>
+<% @books.each do |book| %>
+	<p><a href="/users/<%= @user.id %>/books/<%= book.id %>"><%= book.title %></a></p>
 <% end %>
 
 

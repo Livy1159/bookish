@@ -17,6 +17,7 @@ end
 
 get '/users/:id' do
   @user = User.find(params[:id])
-  
+  @books = @user.books
+  p @user.books
   erb :'users/show'
 end

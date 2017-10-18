@@ -1,5 +1,11 @@
 <h1><%= @book.title.upcase %></h1>
 <div>
-  <p> <%= @book.author %> </p>
-  <p> <%= @book.isbn %> </p>
+  <p> Author: <%= @book.author %> </p>
+  <p> ISBN: <%= @book.isbn %> </p>
 </div>
+
+<form action="/users/<%= @user.id %>/books/<%= @book.id %>" method="POST">
+  <!-- added the book ID in action -->
+  <input type="hidden" name="_method", value="delete">
+  <input type="submit" name="delete" value="Delete book">
+</form>
