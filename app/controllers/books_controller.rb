@@ -15,7 +15,7 @@ post '/users/:id/books' do
   @book.users << @user
 	if @book.save
     if request.xhr?
-      erb :'users/show', layout: false
+      erb :'books/_list_book', layout: false, locals: { book: @book }
     else
       redirect "/users/#{@user.id}"
     end

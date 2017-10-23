@@ -34,7 +34,9 @@ var addBookListener = function () {
       method: method_from_form,
       data: data_from_form
     }).done(function(response) {
-      console.log(response);
+      $(".book-list").append(response);
+      $(".create-new-book-form").hide();
+      $("#add-book-button").show();
     })
   });
 };
