@@ -1,6 +1,11 @@
 get '/users/:id/books/new' do
 	@user = User.find(params[:id])
-  erb :'books/new'
+
+  if request.xhr?
+    erb :'books/new', layout: false
+  else
+    erb :'books/new'
+  end
 end
 
 post '/users/:id/books' do
@@ -9,9 +14,11 @@ post '/users/:id/books' do
   @book = Book.new(params[:book])
   @book.users << @user
 	if @book.save
-    p @book.users
-    p @user.books
-		redirect "/users/#{@user.id}"
+    if request.xhr?
+      erb :'users/show', layout: false
+    else
+      redirect "/users/#{@user.id}"
+    end
 	else
 		@errors = @book.errors.full_messages
 		erb :'books/new'
