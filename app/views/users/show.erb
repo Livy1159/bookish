@@ -1,14 +1,19 @@
 <h1>Welcome <%= @user.name %>!</h1>
 
-<a href="/users/<%= @user.id %>/books/new"><button>Add a book!</button></a>
 
-<div>
+<a class="new-book-button" href="/users/<%= @user.id %>/books/new">
+  <button id="add-book-button">Add a book!</button>
+</a>
 
-<% @books.each do |book| %>
-	<p><a href="/users/<%= @user.id %>/books/<%= book.id %>"><%= book.title %></a></p>
-<% end %>
-
-
+<div class="book-list">
+  <% @books.each do |book| %>
+    <%= erb :"books/_list_book", locals: { book: book } %>
+  <% end %>
 </div>
 
-<a href="/sessions/new"><button>Logout</button></a>
+<form action="/sessions" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Logout">
+</form>
+<div id="book-form-holder"></div>
+

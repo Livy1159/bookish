@@ -1,7 +1,45 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  newBookListener();
+  addBookListener();
 });
+
+var newBookListener = function() {
+  $(".new-book-button").on("click", function() {
+    event.preventDefault();
+
+    var aTag = $(this);
+    var url_from_a_tag = aTag.attr('href');
+
+    $.ajax({
+      url: url_from_a_tag
+    })
+    .done(function(response){
+      $('#book-form-holder').html(response);
+      $('#add-book-button').hide();
+    });
+  });
+};
+
+var addBookListener = function () {
+  $("#book-form-holder").on("submit", ".create-new-book-form", function() {
+    event.preventDefault();
+
+    var form = $(this);
+    var url_from_form = form.attr("action");
+    var method_from_form = form.attr("method");
+    var data_from_form = form.serialize();
+
+    $.ajax({
+      url: url_from_form,
+      method: method_from_form,
+      data: data_from_form
+    }).done(function(response) {
+      $(".book-list").append(response);
+      $(".create-new-book-form").hide();
+      $("#add-book-button").show();
+    })
+  });
+};
+
+
+

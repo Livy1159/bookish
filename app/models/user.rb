@@ -6,13 +6,12 @@ class User < ActiveRecord::Base
 
   has_many :book_users
   has_many :books, through: :book_users
- 
+
   def password
     @password ||= Password.new(password_hash)
   end
 
   def password=(new_password)
-    @plain_text_password = new_password
     @password = Password.create(new_password)
     self.password_hash = @password
   end
