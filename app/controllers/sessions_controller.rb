@@ -4,20 +4,21 @@ get '/sessions/new' do
 end
 
 post '/sessions' do
-  @user = User.find_by(email: params[:email])
+  @user = User.find_by(username: params[:username])
+  
   if @user && @user.authenticate(params[:password])
     session[:id] = @user.id
     redirect "/users/#{@user.id}"
   else
-    @errors = @user.errors.full_messages
+    @errors = ['Something went wrong!']
     erb :'sessions/new'
   end
 end
 
-get '/sessions/:id' do
+# get '/sessions/:id' do
 
-  erb :'sessions/show'
-end
+#   erb :'/show'
+# end
 
 delete '/sessions' do
   session[:id] = nil
